@@ -14,12 +14,14 @@ for job in jobs:
     experience_required = job.find('li').text.replace('card_travel', '')
     job_location = job.find('span').text
     skills = job.find('span', class_='srp-skills').text.replace(' ', '')
-    print(f'''
-    Company Name: {company_name}
-    Required Experience: {experience_required}
-    Job Location: {job_location}
-    Required Skills: {skills}
-    ''')
+    more_info = job.header.h2.a['href']
+    print(f'Company Name: {company_name.strip()}')
+    print(f'Required Experience: {experience_required}')
+    print(f'Job Location: {job_location}')
+    print(f'Required Skills: {skills.strip( )}')
+    print(f'More Info: {more_info}')
+    print('')
+
 
 
 
