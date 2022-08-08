@@ -13,18 +13,21 @@ def find_jobs():
     jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
 
     # for loop to iterate each element
-    for job in jobs:
+    for index, job in enumerate(jobs):
         company_name = job.find('h3', class_='joblist-comp-name').text.replace(' ', '')
         experience_required = job.find('li').text.replace('card_travel', '')
         job_location = job.find('span').text
         skills = job.find('span', class_='srp-skills').text.replace(' ', '')
         more_info = job.header.h2.a['href']
-        print(f'Company Name: {company_name.strip()}')
-        print(f'Required Experience: {experience_required}')
-        print(f'Job Location: {job_location}')
-        print(f'Required Skills: {skills.strip( )}')
-        print(f'More Info: {more_info}')
-        print('')
+
+        # storing data in a file
+        with open(f'files/ {index}.txt', 'w') as f:
+            f.write(f'Company Name: {company_name.strip()} \n')
+            f.write(f'Required Experience: {experience_required} \n')
+            f.write(f'Job Location: {job_location} \n')
+            f.write(f'Required Skills: {skills.strip( )} \n')
+            f.write(f'More Info: {more_info} \n')
+        print(f'File Saved as {index}.txt')
 
 
 if __name__ == '__main__':
